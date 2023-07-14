@@ -1,0 +1,6 @@
+password: uz8UTbCoikflzB9G
+username: samchenkoms
+
+password: gYn1KKahxlWKtegE
+username: user1
+link: mongodb+srv://samchenkoms:<password>@mongosb.ae98jge.mongodb.net/?retryWrites=true&w=majority
