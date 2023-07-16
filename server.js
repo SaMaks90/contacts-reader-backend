@@ -10,7 +10,7 @@ const app = require('./app');
 
 mongoose.set('strictQuery', true);
 
-mongoose.connect('DB_HOST=mongodb+srv://user1:gYn1KKahxlWKtegE@mongosb.ae98jge.mongodb.net/contacts_reader?retryWrites=true&w=majority')
+mongoose.connect('=mongodb+srv://user1:gYn1KKahxlWKtegE@mongosb.ae98jge.mongodb.net/contacts_reader?retryWrites=true&w=majority')
     .then(() => app.listen(3000))
     .catch(e => {
         console.log(e.message);
