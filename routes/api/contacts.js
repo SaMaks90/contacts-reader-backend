@@ -12,7 +12,7 @@ router.get('/:id', isValidId, ctrl.getContactById);
 
 router.post('/', validateBody(schemas.addSchema), ctrl.addContact);
 
-router.put('/:id', isValidId, validateBody(schemas.contactsSchema), ctrl.updateContactById);
+router.put('/:id', isValidId, validateBody(schemas.addSchema), ctrl.updateContactById);
 
 router.patch('/:id/favorite', isValidId, validateBody(schemas.updateFavoriteSchema), ctrl.updateFavorite);
 
