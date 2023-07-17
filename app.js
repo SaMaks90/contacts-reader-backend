@@ -2,21 +2,14 @@ const cors = require('cors');
 const express = require('express');
 const contactsRouter= require('./routes/api/contacts');
 const logger = require('morgan');
-const moment = require('moment');
-const fs = require('fs/promises');
+
+require('dotenv').config();
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 app.use(logger('dev'));
-
-app.use(async (req, res, next) => {
-    const { url, method } = req;
-    const date = moment().format('DD-MM-YYYY_hh:mm:ss');
-    await fs.appendFile('./public/server.log', `\n${method} ${url} ${date}`);
-    next();
-})
 
 app.get('/', (req, res, next) => {
     res.json({ message: 'CORS is activated'});
