@@ -44,7 +44,7 @@ const registerSchema = Joi.object({
     name: Joi.string().required(),
     email: Joi.string().pattern(emailRegexp).required(),
     password: Joi.string().min(6).required(),
-    description: Joi.string().valid(...subscriptionList)
+    subscription: Joi.string().valid(...subscriptionList)
 });
 
 const loginSchema = Joi.object({
