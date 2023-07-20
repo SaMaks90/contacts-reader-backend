@@ -1,9 +1,8 @@
 const cors = require('cors');
 const express = require('express');
 const contactsRouter= require('./routes/api/contacts');
+const authRouter = require('./routes/api/auth');
 const logger = require('morgan');
-
-require('dotenv').config();
 
 const app = express();
 
@@ -15,6 +14,7 @@ app.get('/', (req, res, next) => {
     res.json({ message: 'CORS is activated'});
 });
 
+app.use('/api/auth', authRouter);
 app.use('/api/contacts', contactsRouter);
 
 app.use((_, res, __) => {
