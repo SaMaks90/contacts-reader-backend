@@ -14,6 +14,6 @@ router.get('/current', authenticate, ctrl.getCurrent);
 
 router.post('/logout', authenticate, ctrl.logout);
 
-router.patch('/:id/subscription', authenticate, isValidId, validateBody(schemas.updateSchema), ctrl.updateSubscription);
+router.patch('/subscription', authenticate, validateBody(schemas.updateSchema), ctrl.updateSubscription);
 
 module.exports = router;
