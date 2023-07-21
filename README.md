@@ -7,6 +7,7 @@ Models:
   - password;
   - subscription;
   - token;
+  - avatarUrl;
 - Contact:
   - name;
   - phone;
@@ -21,6 +22,7 @@ Route:
   - GET /api/auth/current Authenticate { Token } Request { email, password, name, subscription } Response {};
   - POST /api/auth/logout Authenticate { Token } Request { } Response { email, subscription };
   - PATCH /api/auth/:id/subscription Authenticate { Token } Request { subscription } Response { message };
+  - PATCH /api/auth/avatars Authenticate { Token } Request { avatar:file } Response { avatarUrl }
 - Contact:
   - GET /api/contacts Authenticate { Token } Request { page, limit, favorite } Response { listContacts }
   - GET /api/contacts/:id Authenticate { Token } Request { } Response { contact }

@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const gravatar = require('gravatar');
 
 const { User } = require('../models/user');
 const { HttpError, ctrlWrapper } = require('../helpers');
@@ -14,12 +15,16 @@ const register = async (req, res) => {
     }
 
     const hashPassword = await bcrypt.hash(password, 10);
-    const newUser = await User.create({ ...req.body, password: hashPassword });
+
+    const avatarUrl = gravatar.url(email);
+
+    const newUser = await User.create({ ...req.body, password: hashPassword, avatarUrl });
 
     res.status(201).json({
         user: {
             email: newUser.email,
-            subscription: newUser.subscription
+            subscription: newUser.subscription,
+            avatarUrl: newUser.avatarUrl
         }
     })
 }
@@ -80,10 +85,21 @@ const updateSubscription = async (req, res) => {
     });
 }
 
+const uploadAvatar = async (req, res) => {
+    const { _id: id } = req.user;
+    const avatarUrl = req.avatarUrl;
+    await User.findByIdAndUpdate(id, { avatarUrl });
+
+    res.json({
+        avatarUrl
+    });
+}
+
 module.exports = {
     register: ctrlWrapper(register),
     login: ctrlWrapper(login),
     getCurrent: ctrlWrapper(getCurrent),
     logout: ctrlWrapper(logout),
-    updateSubscription: ctrlWrapper(updateSubscription)
+    updateSubscription: ctrlWrapper(updateSubscription),
+    uploadAvatar: ctrlWrapper(uploadAvatar)
 }
